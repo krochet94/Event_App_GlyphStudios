@@ -12,7 +12,7 @@ import AlertTemplate from "react-alert-template-oldschool-dark";
 
 const options = {
   timeout: 4000,
-  position: positions.MIDDLE,
+  position: positions.BOTTOM_CENTER,
   transition: transitions.SCALE,
 };
 

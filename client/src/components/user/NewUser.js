@@ -16,10 +16,20 @@ const NewUser = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    var formData = new FormData();
-    formData.set("name", name);
-    formData.set("email", email);
-    dispatch(newUser(formData));
+    if (name==="" || email==="") {
+      alert.error("please input a value");
+      dispatch(clearErrors());
+      console.log(email, name);
+    } else {
+      dispatch(
+        newUser(
+          JSON.stringify({
+            name: name,
+            email: email,
+          })
+        )
+      );
+    }
   };
 
   useEffect(() => {
@@ -32,16 +42,12 @@ const NewUser = () => {
       alert.success("User added successfully");
       dispatch({ type: NEW_USER_RESET });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, alert, error, success]);
 
   return (
-    <div className="row container border border-dark mx-auto mt-5">
-      <form
-        encType="multipart/form-data"
-        onSubmit={submitHandler}
-        className="w-auto p-3 m-auto col-12"
-      >
+    <div className="container">
+      <form onSubmit={submitHandler} className="p-lg-5 p-1">
         <h1 className="mb-4">New User</h1>
 
         <div className="w-100 p-1">
@@ -68,10 +74,9 @@ const NewUser = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
           <button
             type="submit"
-            className="btn btn-primary w-100 py-3"
+            className="btn btn-primary w-100 py-3 my-3"
             disabled={loading ? true : false}
           >
             CREATE

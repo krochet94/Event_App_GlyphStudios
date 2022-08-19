@@ -15,7 +15,6 @@ exports.newEvent = catchAsyncErrors(async (req, res, next) => {
   if(res.statusCode===404){
     return;
   }
-
   const event = await Event.create(req.body);
   res.status(200).json({
     success: true,
@@ -108,7 +107,9 @@ exports.deleteEvent = catchAsyncErrors(async (req, res, next) => {
 const validation = async(events, body, res) =>{
   var timeOverlap = false; //initial value
   const a = new Date(body.timeStart).getTime();
-  const b = new Date(body.timeEnd).getTime();
+  const b = new Date(body.timeEnd).getTime(); //getTime for overall total value
+  const A = new Date(body.timeStart).getHours();
+  const B = new Date(body.timeEnd).getHours(); //getHours for the hour of the day (0-23)
 
   //validation of time start and time end
   //start < end; start > present; end > present 
@@ -119,9 +120,9 @@ const validation = async(events, body, res) =>{
     });
   }
 
-  //validation for 8am to 8pm
+  //validation for 8am(8) to 8pm(20)
   // (hours) 8 <= start <= 20; 8 <= end <= 20    
-  if(body.timeStart.getHours() < 8 || body.timeStart.getHours() > 20 || body.timeEnd.getHours() < 8 || body.timeEnd.getHours() > 20){
+  if(A < 8 || B > 20 || A < 8 || B > 20){
     return res.status(404).json({
       success: false,
       message: "Time should be in between 8AM to 8PM",

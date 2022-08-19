@@ -94,7 +94,7 @@ export const updateEvent = (eventData) => async (dispatch) => {
     dispatch({ type: UPDATE_EVENT_REQUEST });
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     };
     const { data } = await axios.put(
@@ -195,7 +195,7 @@ export const updateUser = (userData) => async (dispatch) => {
     dispatch({ type: UPDATE_USER_REQUEST });
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     };
     const { data } = await axios.put(
