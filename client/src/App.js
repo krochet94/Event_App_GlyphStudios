@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Users from "./components/Users";
 import NewUser from "./components/user/NewUser";
 import NewEvent from "./components/event/NewEvent";
+import Event from "./components/event/Event";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/users" exact element={<Users />} />
           <Route path="/newUser" exact element={<NewUser />} />
           <Route path="/newEvent" exact element={<NewEvent />} />
+          <Route path="/event/:id" exact element={<Event />} />
         </Routes>
       </div>
     </Router>
