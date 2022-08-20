@@ -89,7 +89,7 @@ export const deleteEvent = (id) => async (dispatch) => {
 };
 
 //Update event
-export const updateEvent = (eventData) => async (dispatch) => {
+export const updateEvent = (eventData, id) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_EVENT_REQUEST });
     const config = {
@@ -98,7 +98,7 @@ export const updateEvent = (eventData) => async (dispatch) => {
       },
     };
     const { data } = await axios.put(
-      `/api/v1/event/${eventData._id}`,
+      `/api/v1/event/${id}`,
       eventData,
       config
     );

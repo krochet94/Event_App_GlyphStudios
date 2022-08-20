@@ -142,7 +142,7 @@ const Users = () => {
               <Modal show={showUpdate} onHide={() => setShowUpdate(false)}>
                 <Modal.Body>
                   <Form
-                    id="formUpdate"
+                    id="formUpdateUser"
                     onSubmit={submitUpdate}
                     className="p-lg-5 p-1"
                   >
@@ -172,7 +172,7 @@ const Users = () => {
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" form="formUpdate" type="submit">
+                  <Button variant="primary" form="formUpdateUser" type="submit">
                     Save
                   </Button>
                   <Button

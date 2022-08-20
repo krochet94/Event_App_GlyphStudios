@@ -84,7 +84,7 @@ export const newEventReducer = (state = { event: {} }, action) => {
       return { ...state, error: action.payload };
 
     case CLEAR_ERRORS:
-      return { ...state, error: null };
+      return { ...state, loading: false, error: null };
 
     default:
       return state;
@@ -189,7 +189,7 @@ export const newUserReducer = (state = { user: {} }, action) => {
       return { ...state, error: action.payload };
 
     case CLEAR_ERRORS:
-      return { ...state, error: null };
+      return { ...state, loading: false, error: null };
 
     default:
       return state;
@@ -219,7 +219,7 @@ export const userReducer = (state = {}, action) => {
       return { ...state, error: action.payload };
 
     case CLEAR_ERRORS:
-      return { ...state, error: null };
+      return { ...state, error: null, loading: false };
 
     default:
       return state;

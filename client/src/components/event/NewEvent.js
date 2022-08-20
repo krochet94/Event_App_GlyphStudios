@@ -13,7 +13,7 @@ const NewEvent = () => {
   const [title, setTitle] = useState("");
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
-  const [attendies, setAttendies] = useState([]);
+  const [attendies, setAttendies] = useState();
   const { loading, error, success } = useSelector((state) => state.newEvent);
   const { users } = useSelector((state) => state.users);
   const NEW_EVENT_RESET = "NEW_EVENT_RESET";
@@ -101,15 +101,24 @@ const NewEvent = () => {
               }}
             >
               {users.map((user) => (
-                <option value={user._id}>{user.name}</option>
+                <option key={user._id} value={user._id}>
+                  {user.name}
+                </option>
               ))}
             </Form.Control>
 
             {/* <Form.Text>{attendies.map(x=>`${x} `)}</Form.Text> */}
             {/* showing the names selected so far*/}
             <Form.Text>
-              {attendies.map((x) =>
-                users.filter((user) => (user.id === x ? `[${user.name}] ` : ""))
+              &#8203; {/* invisible character to take up space*/}
+              {attendies &&
+                attendies.map((x) =>
+                  users
+                    .filter((user) => user._id === x)
+                    .map((z) => `${z.name}, `)
+                )}{" "}
+              {attendies && attendies.length > 10 && (
+                <i className="text-danger">{`==> more than 10 attendies already`}</i>
               )}
             </Form.Text>
           </Form.Group>
