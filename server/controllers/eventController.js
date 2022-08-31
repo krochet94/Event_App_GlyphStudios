@@ -121,17 +121,17 @@ const validation = async(events, body, res) =>{
   }
 
   //validation for 8am(8) to 8pm(20)
-  // (hours) 8 <= start <= 20; 8 <= end <= 20    
-  if(A < 8 || B > 20 || A < 8 || B > 20){
+  // (hours) start >= 8 hours; end  <= 20 hours ; B-A < = 12 hours
+  if(A >= 8 || B <= 20 || B-A <= 12){
     return res.status(404).json({
       success: false,
-      message: "Time should be in between 8AM to 8PM",
+      message: "Time should be in between 8AM to 8PM, same day",
     });
   }
 
   //validation of time overlapping
-  events.map((data) => {
-     if (a < data.timeEnd.getTime() && b > data.timeStart.getTime()) {
+  events.map((event) => {
+     if (a < event.timeEnd.getTime() && b > event.timeStart.getTime()) {
       timeOverlap = true;
       return;
     }

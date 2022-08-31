@@ -18,9 +18,9 @@ mongoose.connect(process.env.DB_LOCAL_URI).then((con) => {
   console.log(`MongoDB Database connected with HOST: ${con.connection.host}`);
 });
 
-const server = app.listen(process.env.PORT, () => {
+const server = app.listen(3005, () => {
   console.log(
-    `Server started on PORT: ${process.env.PORT}`
+    `Server started on PORT: 3005`
   );
 });
 
